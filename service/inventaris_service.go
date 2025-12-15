@@ -106,7 +106,7 @@ func (serviceInventaris *ServiceInventaris) UpdateItem(item_id int, item *model.
 		}
 	}
 
-	return errors.New("id category not found")
+	return errors.New("id item not found")
 }
 
 // service delete item by ID
@@ -121,7 +121,7 @@ func (serviceInventaris *ServiceInventaris) DeleteItem(item_id int) error {
 		}
 	}
 
-	return errors.New("id category not found")
+	return errors.New("id item not found")
 }
 
 // service get items must be replaced after 100 days and replaced is true

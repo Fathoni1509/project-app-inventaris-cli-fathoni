@@ -64,11 +64,6 @@ func (repo *RepositoryInventaris) AddCategory(category *model.Categories) error 
 	query := `INSERT INTO categories (name_category, description) VALUES
 	($1, $2) RETURNING category_id`
 
-	// err := repo.DB.Exec(context.Background(), query,
-	// 	category.Name,
-	// 	category.Description,
-	// ).Scan(&category.Id)
-
 	_, err := repo.DB.Exec(context.Background(), query,
 		category.Name,
 		category.Description,
@@ -264,7 +259,7 @@ func (repo *RepositoryInventaris) ItemReplaced() ([]model.Items, error) {
 		WHERE CURRENT_DATE - purchase_date > 100 AND replaced = TRUE
 		ORDER BY i.item_id ASC`
 
-	rows, err := repo.DB.Query(context.TODO(), query)
+	rows, err := repo.DB.Query(context.Background(), query)
 
 	if err != nil {
 		return nil, err
