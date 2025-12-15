@@ -44,6 +44,8 @@ func (repo *RepositoryInventaris) GetListCategories() ([]model.Categories, error
 		return nil, err
 	}
 
+	defer rows.Close()
+
 	var listCategories []model.Categories
 	var list model.Categories
 	for rows.Next() {
@@ -144,6 +146,8 @@ func (repo *RepositoryInventaris) GetListItems() ([]model.Items, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	defer rows.Close()
 
 	var listItems []model.Items
 	var list model.Items
@@ -261,6 +265,8 @@ func (repo *RepositoryInventaris) ItemReplaced() ([]model.Items, error) {
 		return nil, err
 	}
 
+	defer rows.Close()
+
 	var listReplaced []model.Items
 	var list model.Items
 	for rows.Next() {
@@ -336,6 +342,8 @@ func (repo *RepositoryInventaris) GetInvestValueItems() ([]model.Items, error) {
 		return nil, err
 	}
 
+	defer rows.Close()
+
 	var investValues []model.Items
 	var list model.Items
 	for rows.Next() {
@@ -403,6 +411,8 @@ func (repo *RepositoryInventaris) SearchItems(keyword string) ([]model.Items, er
 	if err != nil {
 		return nil, err
 	}
+
+	defer rows.Close()
 
 	var listItems []model.Items
 	var list model.Items
