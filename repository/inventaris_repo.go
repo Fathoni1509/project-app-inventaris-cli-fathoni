@@ -64,10 +64,15 @@ func (repo *RepositoryInventaris) AddCategory(category *model.Categories) error 
 	query := `INSERT INTO categories (name_category, description) VALUES
 	($1, $2) RETURNING category_id`
 
-	err := repo.DB.QueryRow(context.Background(), query,
+	// err := repo.DB.Exec(context.Background(), query,
+	// 	category.Name,
+	// 	category.Description,
+	// ).Scan(&category.Id)
+
+	_, err := repo.DB.Exec(context.Background(), query,
 		category.Name,
 		category.Description,
-	).Scan(&category.Id)
+	)
 
 	if err != nil {
 		return err
@@ -167,13 +172,13 @@ func (repo *RepositoryInventaris) AddItem(item *model.Items) error {
 	query := `INSERT INTO items(category_id, name_item, price, purchase_date, replaced)
 		VALUES ($1, $2, $3, $4, $5)`
 
-	err := repo.DB.QueryRow(context.Background(), query,
+	_, err := repo.DB.Exec(context.Background(), query,
 		item.IdCategory,
 		item.Name,
 		item.Price,
 		item.PurchaseDate,
 		item.Replaced,
-	).Scan(&item.Id)
+	)
 
 	if err != nil {
 		return err

@@ -235,7 +235,7 @@ func (handlerInventaris *HandlerInventaris) SearchItems(keyword string) error {
 		return err
 	}
 
-	fmt.Printf("=== Search Results ===\n\n")
+	fmt.Printf("\n=== Search Results ===\n\n")
 
 	// cetak table
 	utils.PrintTabelItems(items)
